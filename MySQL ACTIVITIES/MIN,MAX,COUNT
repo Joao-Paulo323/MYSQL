@@ -1,0 +1,609 @@
+-- EX1:
+SELECT MIN(Quantity) AS 'Menor Quantidade'
+FROM OrderDetails;
+
+-- EX2:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails;
+
+-- EX3:
+SELECT MIN(OrderID) AS 'Menor ID da Ordem'
+FROM OrderDetails;
+
+-- EX4:
+SELECT MAX(OrderID) AS 'Maior ID da Ordem'
+FROM OrderDetails
+WHERE Quantity > 5;
+
+-- EX5:
+SELECT MIN(Quantity) AS 'Menor Quantidade'
+FROM OrderDetails
+WHERE ProductID = 3;
+
+-- EX6:
+SELECT MAX(OrderDetailID) AS 'Maior ID Detalhado'
+FROM OrderDetails
+WHERE Quantity < 10;
+
+-- EX7:
+SELECT MIN(ProductID) AS 'Menor ID do Produto'
+FROM OrderDetails;
+
+-- EX8:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+ORDER BY ProductID ASC;
+
+-- EX9:
+SELECT MIN(OrderID) AS 'Menor ID da Ordem'
+FROM OrderDetails
+ORDER BY Quantity DESC;
+
+-- EX10:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+WHERE ProductID <> 2;
+
+-- EX11:
+SELECT MIN(OrderDetailID) AS 'Menor ID Detalhado'
+FROM OrderDetails
+ORDER BY OrderID ASC;
+
+-- EX12:
+SELECT MIN(Quantity) AS 'Menor Quantidade'
+FROM OrderDetails
+WHERE OrderID > 50;
+
+-- EX13:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+WHERE ProductID = 4
+ORDER BY OrderDetailID ASC;
+
+-- EX14:
+SELECT MIN(OrderDetailID) AS 'Menor ID Detalhado'
+FROM OrderDetails
+WHERE Quantity > 15;
+
+-- EX15:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+WHERE ProductID BETWEEN 5 AND 10;
+
+-- EX16:
+SELECT MIN(OrderID) AS 'Menor ID da Ordem'
+FROM OrderDetails
+WHERE Quantity % 5 = 0;
+
+-- EX17:
+SELECT MAX(OrderDetailID) AS 'Maior ID Detalhado'
+FROM OrderDetails
+ORDER BY Quantity ASC;
+
+-- EX18:
+SELECT MIN(Quantity) AS 'Menor Quantidade'
+FROM OrderDetails
+WHERE OrderID < 30;
+
+-- EX19:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+ORDER BY ProductID DESC;
+
+-- EX20:
+SELECT MIN(ProductID) AS 'Menor ID do Produto'
+FROM OrderDetails
+WHERE Quantity > 20;
+
+-- EX21:
+SELECT MAX(Quantity) AS 'Maior Quantidade'
+FROM OrderDetails
+WHERE ProductID = 6
+ORDER BY OrderID ASC;
+
+-- EX22:
+SELECT MIN(OrderID) AS 'Menor ID da Ordem'
+FROM OrderDetails
+ORDER BY OrderDetailID ASC;
+
+-- EX23:
+SELECT MAX(OrderDetailID) AS 'Maior ID Detalhado'
+FROM OrderDetails
+WHERE ProductID > 10;
+
+-- EX24:
+SELECT MIN(Quantity) AS 'Menor Quantidade'
+FROM OrderDetails
+ORDER BY OrderID ASC;
+
+-- EX25:
+SELECT MAX(OrderID) AS 'Maior ID da Ordem'
+FROM OrderDetails
+WHERE Quantity < 10;
+
+/* EXERCICIO 26 */
+SELECT ProductID AS 'ID dos Produtos',
+       MIN(Quantity) AS QUANTIDADE
+FROM OrderDetails
+WHERE ProductID % 2 = 0
+GROUP BY ProductID
+ORDER BY ProductID;
+
+/* EXERCICIO 27 */
+SELECT Quantity AS QUANTIDADE,
+       MAX(OrderDetailID) AS 'Detalhe da ordem'
+FROM OrderDetails
+WHERE Quantity % 3 = 0
+GROUP BY Quantity
+ORDER BY Quantity;
+
+/* EXERCICIO 28 */
+SELECT Quantity AS QUANTIDADE,
+       MIN(ProductID) AS 'ID dos produtos'
+FROM OrderDetails
+WHERE Quantity BETWEEN 5 AND 15
+GROUP BY Quantity
+ORDER BY Quantity;
+
+/* EXERCICIO 29 */
+SELECT OrderID AS ORDENS,
+       MAX(Quantity) AS QUANTIDADE
+FROM OrderDetails
+WHERE OrderID BETWEEN 50 AND 100
+GROUP BY OrderID
+ORDER BY OrderID;
+
+/* EXERCICIO 30 */
+SELECT ProductID AS 'ID dos Produtos',
+       MIN(OrderID) AS MenorOrderID
+FROM OrderDetails
+WHERE Quantity < 8
+GROUP BY ProductID
+ORDER BY ProductID;
+
+/* EXERCICIO 31 */
+SELECT OrderDetailID AS 'ORDENS DETALHADAS',
+       MAX(Quantity) AS QUANTIDADE
+FROM OrderDetails
+GROUP BY OrderDetailID
+ORDER BY OrderDetailID;
+
+/* EXERCICIO 32 */
+SELECT OrderID AS ORDENS,
+       MIN(Quantity) AS QUANTIDADE
+FROM OrderDetails
+WHERE OrderID < 20
+GROUP BY OrderID
+ORDER BY OrderID;
+
+/* EXERCICIO 33 */
+SELECT OrderID AS ORDENS,
+       MAX(Quantity) AS QUANTIDADE
+FROM OrderDetails
+WHERE ProductID < 10
+GROUP BY OrderID
+ORDER BY OrderID;
+
+/* EXERCICIO 34 */
+SELECT Quantity AS QUANTIDADE,
+       MIN(OrderDetailID) AS 'Detalhe da ordem'
+FROM OrderDetails
+WHERE Quantity > 12
+GROUP BY Quantity
+ORDER BY Quantity;
+
+/* EXERCICIO 35 */
+SELECT ProductID  'ID dos Produtos',
+       MAX(OrderID) AS Ordens
+FROM OrderDetails
+WHERE ProductID LIKE '2%'
+GROUP BY ProductID
+ORDER BY ProductID;
+
+/* EXERCICIO 36 */
+SELECT OrderID AS ORDENS ,
+       MIN(Quantity) AS 'Detalhe da ordem'
+FROM OrderDetails
+WHERE OrderID BETWEEN 10 AND 30
+GROUP BY OrderID
+ORDER BY OrderID, MIN(Quantity);
+
+/* EXERCICIO 37 */
+SELECT ProductID AS 'ID dos Produtos',
+       MAX(OrderDetailID) AS 'Ordem Maxima'
+FROM OrderDetails
+WHERE ProductID BETWEEN 3 AND 8
+GROUP BY ProductID
+ORDER BY ProductID DESC;
+
+/* EXERCICIO 38 */
+SELECT ProductID AS 'ID dos Produtos',
+       MAX(Quantity) AS 'Ordem Maxima'
+FROM OrderDetails
+WHERE ProductID BETWEEN 3 AND 8
+GROUP BY ProductID,Quantity
+ORDER BY ProductID;
+
+/* EXERCICIO 39 */
+SELECT MAX(OrderID)AS'Ordem Maxima',
+       Quantity AS Quantidade
+FROM Orderdetails
+WHERE  Quantity >15
+GROUP BY OrderID,Quantity
+ORDER BY OrderI
+
+/* EXERCICIO 40*/
+SELECT MAX(OrderDetailID) AS 'Ordem Maxima'
+FROM OrderDetails
+WHERE OrderDetailID <25
+GROUP BY OrderDetailID
+ORDER BY OrderDetailID ASC;
+
+/* EXERCICIO 41*/
+SELECT MAX(OrderID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE OrderID BETWEEN 30 AND 70 
+GROUP BY OrderID
+ORDER BY OrderID ASC;
+
+/* EXERCICIO 42*/
+SELECT MAX(ProductID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE ProductID = 7 
+GROUP BY ProductID
+ORDER BY ProductID ASC;
+
+/* EXERCICIO 43*/
+SELECT MAX(Quantity)AS Quantidade
+FROM Orderdetails
+WHERE  Quantity >20
+GROUP BY Quantity
+ORDER BY Quantity ASC ;
+
+/* EXERCICIO 44*/
+SELECT MAX(OrderID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE OrderID >15
+GROUP BY OrderID
+ORDER BY OrderID ASC;
+
+/* EXERCICIO 45*/
+SELECT MAX(ProductID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE ProductID LIKE '%7'
+GROUP BY ProductID
+ORDER BY ProductID ASC;
+
+/* EXERCICIO 46*/
+SELECT MAX(Quantity)AS Quantidade
+FROM Orderdetails
+WHERE  Quantity BETWEEN 7 AND 14
+GROUP BY Quantity
+ORDER BY Quantity ASC ;
+
+/* EXERCICIO 47*/
+SELECT MAX(OrderID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE OrderID >90
+GROUP BY OrderID
+ORDER BY OrderID ASC;
+
+/* EXERCICIO 48*/
+SELECT MAX(OrderDetailID) AS 'Ordem Maxima'
+FROM OrderDetails
+WHERE OrderDetailID <50
+GROUP BY OrderDetailID
+ORDER BY OrderDetailID ASC;
+
+/* EXERCICIO 49*/
+SELECT MAX(Quantity)AS Quantidade
+FROM Orderdetails
+WHERE  Quantity >30
+GROUP BY Quantity
+ORDER BY Quantity ASC ;
+
+/* EXERCICIO 50*/
+SELECT MAX(OrderID)AS'Ordem Maxima'
+FROM Orderdetails
+WHERE OrderID BETWEEN 10 AND 40
+GROUP BY OrderID
+ORDER BY OrderID ASC;
+
+
+--BLOCO 2
+
+-- EX 1
+
+SELECT COUNT(*)
+FROM OrderDetails;
+ 
+-- EX 2
+
+SELECT COUNT(DISTINCT OrderID)
+FROM OrderDetails;
+ 
+-- EX 3
+
+SELECT COUNT(DISTINCT ProductID) 
+FROM OrderDetails;
+ 
+-- EX 4
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity > 10;
+ 
+-- EX 5
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID = 5;
+ 
+-- EX 6
+
+SELECT COUNT(ProductID) 
+FROM OrderDetails 
+WHERE Quantity < 20;
+ 
+-- EX 7
+
+SELECT COUNT(*) 
+FROM OrderDetails 
+WHERE OrderDetailID % 2 = 0;
+ 
+-- EX 8
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE Quantity BETWEEN 5 AND 15;
+ 
+-- EX 9
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID > 50;
+ 
+-- EX 10
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE ProductID = 3;
+ 
+-- EX 11
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE Quantity % 3 = 0;
+ 
+-- EX 12
+
+SELECT COUNT(DISTINCT OrderID)
+FROM OrderDetails 
+WHERE OrderID > 100;
+ 
+-- EX 13
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE OrderDetailID < 20;
+ 
+-- EX 14
+
+SELECT COUNT(*) 
+FROM OrderDetails 
+WHERE ProductID < 8;
+ 
+-- EX 15
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity > 25;
+ 
+-- EX 16
+
+SELECT COUNT(ProductID)
+FROM OrderDetails 
+WHERE OrderID < 15;
+ 
+-- EX 17
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE Quantity < 5;
+ 
+-- EX 18
+
+SELECT COUNT(DISTINCT OrderID)
+FROM OrderDetails
+WHERE Quantity > 30;
+ 
+-- EX 19
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE ProductID % 2 = 0;
+ 
+-- EX 20
+
+SELECT COUNT(OrderDetailID)
+FROM OrderDetails 
+WHERE Quantity BETWEEN 10 AND 20;
+ 
+-- EX 21
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE ProductID > 15;
+  
+-- EX 22
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE CAST(OrderDetailID AS CHAR) LIKE '1%';
+ 
+-- EX 23
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE OrderID = 10;
+ 
+-- EX 24
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE CAST(Quantity AS CHAR) LIKE '%0';
+ 
+-- EX 25
+
+SELECT COUNT(OrderID)
+FROM OrderDetails
+WHERE ProductID < 4;
+ 
+-- EX 26
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity < 12;
+ 
+-- EX 27
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE OrderDetailID > 100;
+ 
+-- EX 28
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID = 8;
+ 
+-- EX 29
+
+SELECT COUNT(ProductID)
+FROM OrderDetails 
+WHERE Quantity > 15;
+ 
+-- EX 30
+
+SELECT COUNT(OrderDetailID)
+FROM OrderDetails
+WHERE Quantity % 2 <> 0;
+ 
+-- EX 31
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE ProductID BETWEEN 2 AND 10;
+ 
+-- EX 32
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID > 20;
+ 
+-- EX 33
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity = 10;
+ 
+-- EX 34
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE CAST(OrderDetailID AS CHAR) LIKE '%3';
+ 
+-- EX 35
+
+SELECT COUNT(DISTINCT ProductID)
+FROM OrderDetails 
+WHERE Quantity > 18;
+ 
+-- EX 36
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE OrderID < 50;
+ 
+-- EX 37
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity = 5;
+ 
+-- EX 38
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE CAST(ProductID AS CHAR) LIKE '4%';
+ 
+-- EX 39
+
+SELECT COUNT(DISTINCT OrderID)
+FROM OrderDetails 
+WHERE Quantity > 15;
+ 
+-- EX 40
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE OrderDetailID < 25;
+ 
+-- EX 41
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID BETWEEN 30 AND 70;
+ 
+-- EX 42
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE ProductID = 7;
+ 
+-- EX 43
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE Quantity > 20;
+ 
+-- EX 44
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE OrderID > 15;
+ 
+-- EX 45
+
+SELECT COUNT(*) FROM
+OrderDetails
+WHERE CAST(ProductID AS CHAR) LIKE '%6';
+ 
+-- EX 46
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE Quantity BETWEEN 7 AND 14;
+ 
+-- EX 47
+
+SELECT COUNT(*)
+FROM OrderDetails 
+WHERE OrderID > 90;
+ 
+-- EX 48
+
+SELECT COUNT(*) 
+FROM OrderDetails 
+WHERE OrderDetailID < 50;
+ 
+-- EX 49
+
+SELECT COUNT(*)
+FROM OrderDetails
+WHERE Quantity > 30;
+ 
+-- EX 50
+
+SELECT COUNT(*) 
+FROM OrderDetails
+WHERE OrderID BETWEEN 10 AND 40;

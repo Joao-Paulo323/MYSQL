@@ -1,0 +1,675 @@
+-- EX1:
+SELECT categoryname AS 'Nome da Categoria'
+FROM categories
+ORDER BY categoryname ASC
+LIMIT 5;
+
+-- EX2:
+SELECT Quantity AS 'Quantidade' 
+FROM orderdetails
+WHERE Quantity > 10
+ORDER BY Quantity ASC
+LIMIT 3; 	
+
+-- EX3:
+SELECT Quantity AS 'Quantidade' 
+FROM orderdetails
+WHERE Quantity 
+ORDER BY Quantity DESC
+LIMIT 7; 
+
+-- EX4:
+SELECT ProductID AS 'ID do Produto' 
+FROM orderdetails
+WHERE ProductID = 4 
+ORDER BY Quantity DESC
+LIMIT 10; 	
+
+-- EX5:
+SELECT OrderID AS 'ID do Pedido' ,orderdetailid
+FROM orderdetails
+WHERE orderid 
+ORDER BY Orderdetailid ASC
+LIMIT 2; 	
+
+-- EX6:
+SELECT Quantity AS 'Quantidade' ,orderdetailid
+FROM orderdetails
+WHERE quantity 
+ORDER BY Quantity ASC
+LIMIT 15; 	
+
+-- EX7:
+SELECT Quantity AS 'Quantidade' ,ProductID AS 'ID do Produto'
+FROM orderdetails
+WHERE quantity 
+ORDER BY ProductID ASC
+LIMIT 20; 	
+
+-- EX8:
+SELECT Quantity AS 'Quantidade' ,OrderdetailID AS 'ID de Detalhe do Produto'
+FROM orderdetails
+WHERE quantity 
+ORDER BY OrderdetailID ASC
+LIMIT 8; 	
+
+-- EX9:
+SELECT Quantity AS 'Quantidade' ,OrderID AS 'ID Pedido'
+FROM orderdetails
+WHERE ProductID > 3 
+ORDER BY OrderID ASC
+LIMIT 5; 	
+
+-- EX10:
+SELECT Quantity AS 'Quantidade' ,OrderID AS 'ID Pedido'
+FROM orderdetails
+WHERE OrderID
+ORDER BY Quantity DESC
+LIMIT 10; 	
+
+-- EX11:
+SELECT Quantity AS 'Quantidade' ,OrderDetailID AS 'ID de detalhe do Pedido'
+FROM orderdetails
+WHERE Quantity < 15
+ORDER BY OrderDetailID DESC
+LIMIT 12; 	
+
+-- EX12:
+SELECT Quantity AS 'Quantidade' ,ProductID AS 'ID do Produto'
+FROM orderdetails
+WHERE ProductID % 2 = 0
+ORDER BY Quantity ASC
+LIMIT 12; 	
+
+-- EX13:
+SELECT ProductID AS 'ID do Produto'
+FROM orderdetails
+WHERE ProductID 
+ORDER BY ProductID DESC
+LIMIT 5;
+
+-- Ex14
+SELECT OrderID AS 'Numero da Ordem',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+ORDER BY OrderID ASC, Quantity ASC
+LIMIT 7;
+
+-- Ex15
+SELECT Quantity AS 'Quantidade',
+       OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity < 8
+ORDER BY OrderID ASC, ProductID ASC
+LIMIT 3;
+
+-- Ex16
+SELECT Quantity AS 'Quantidade',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+ORDER BY Quantity DESC, OrderID ASC
+LIMIT 9;
+
+-- Ex17
+SELECT OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE OrderID = 20
+LIMIT 2;
+
+-- Ex18
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity > 25
+ORDER BY ProductID ASC
+LIMIT 10;
+
+-- Ex19
+SELECT OrderDetailID AS 'ID Detalhado',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE OrderDetailID < 50
+ORDER BY Quantity ASC
+LIMIT 4;
+
+-- Ex20
+SELECT OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE OrderID BETWEEN 10 AND 30
+ORDER BY ProductID ASC
+LIMIT 6;
+
+-- Ex21
+SELECT Quantity AS 'Quantidade',
+       OrderDetailID AS 'ID Detalhado'
+FROM OrderDetails
+ORDER BY Quantity DESC, OrderDetailID ASC
+LIMIT 8;
+
+-- Ex22
+SELECT ProductID AS 'ID do Produto',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE ProductID LIKE '%7'
+ORDER BY OrderID ASC
+LIMIT 5;
+
+-- Ex23
+SELECT OrderID AS 'Numero da Ordem',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE OrderID > 100
+ORDER BY Quantity ASC
+LIMIT 3;
+
+-- Ex24
+SELECT Quantity AS 'Quantidade',
+       OrderDetailID AS 'ID Detalhado'
+FROM OrderDetails
+WHERE Quantity > 15
+ORDER BY OrderDetailID ASC
+LIMIT 10;
+
+-- Ex25
+SELECT OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+ORDER BY OrderID ASC, ProductID ASC
+LIMIT 12;
+
+-- Ex26
+SELECT ProductID AS 'ID do Produto',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE ProductID % 3 = 0
+ORDER BY Quantity ASC
+LIMIT 7;
+
+-- Ex27
+SELECT OrderDetailID AS 'ID Detalhado',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE OrderDetailID BETWEEN 5 AND 50
+ORDER BY OrderID ASC
+LIMIT 10;
+
+-- Ex28
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+ORDER BY Quantity DESC, ProductID ASC
+LIMIT 6;
+
+-- Ex29
+SELECT ProductID AS 'ID do Produto',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE ProductID % 2 <> 0
+ORDER BY Quantity ASC
+LIMIT 4;
+
+-- Ex30
+SELECT OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE OrderID > 15
+ORDER BY ProductID ASC
+LIMIT 8;
+
+-- Ex31
+SELECT Quantity AS 'Quantidade',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE Quantity < 5
+ORDER BY OrderID ASC
+LIMIT 3;
+
+-- Ex32
+SELECT ProductID AS 'ID do Produto',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE ProductID % 2 = 0
+ORDER BY OrderID ASC
+LIMIT 5;
+
+-- Ex33
+SELECT OrderDetailID AS 'ID Detalhado'
+FROM OrderDetails
+ORDER BY OrderDetailID DESC
+LIMIT 10;
+
+-- Ex34
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity % 5 = 0
+ORDER BY ProductID ASC
+LIMIT 7;
+
+-- Ex35
+SELECT ProductID AS 'ID do Produto',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+ORDER BY ProductID ASC, OrderID ASC
+LIMIT 2;
+
+-- Ex36
+SELECT OrderID AS 'Numero da Ordem',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE OrderID LIKE '%1'
+ORDER BY Quantity ASC
+LIMIT 8;
+
+-- Ex37
+SELECT OrderID AS 'Numero da Ordem',
+       OrderDetailID AS 'ID Detalhado'
+FROM OrderDetails
+ORDER BY OrderID DESC, OrderDetailID ASC
+LIMIT 4;
+
+-- Ex38
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity > 30
+ORDER BY ProductID ASC
+LIMIT 9;
+
+-- Ex39
+SELECT ProductID AS 'ID do Produto',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+ORDER BY ProductID ASC, OrderID ASC
+LIMIT 5;
+
+-- Ex40
+SELECT OrderDetailID AS 'ID Detalhado',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+ORDER BY OrderDetailID DESC, Quantity ASC
+LIMIT 6;
+
+-- Ex41
+SELECT OrderID AS 'Numero da Ordem',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE OrderID % 2 <> 0
+ORDER BY Quantity ASC
+LIMIT 10;
+
+-- Ex42
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity = 20
+ORDER BY ProductID ASC
+LIMIT 3;
+
+-- Ex43
+SELECT OrderDetailID AS 'ID Detalhado',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE OrderDetailID < 200
+ORDER BY OrderID ASC
+LIMIT 7;
+
+-- Ex44
+SELECT OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE OrderID BETWEEN 100 AND 200
+ORDER BY ProductID ASC
+LIMIT 5;
+
+-- Ex45
+SELECT Quantity AS 'Quantidade',
+       OrderDetailID AS 'ID Detalhado'
+FROM OrderDetails
+ORDER BY Quantity DESC, OrderDetailID ASC
+LIMIT 12;
+
+-- Ex46
+SELECT ProductID AS 'ID do Produto',
+       OrderID AS 'Numero da Ordem'
+FROM OrderDetails
+WHERE ProductID < 10
+ORDER BY OrderID ASC
+LIMIT 9;
+
+-- Ex47
+SELECT OrderID AS 'Numero da Ordem',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+WHERE OrderID LIKE '%0'
+ORDER BY Quantity ASC
+LIMIT 2;
+
+-- Ex48
+SELECT OrderID AS 'Numero da Ordem',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+ORDER BY OrderID ASC, ProductID ASC
+LIMIT 5;
+
+-- Ex49
+SELECT Quantity AS 'Quantidade',
+       ProductID AS 'ID do Produto'
+FROM OrderDetails
+WHERE Quantity % 4 = 0
+ORDER BY ProductID ASC
+LIMIT 6;
+
+-- Ex50
+SELECT ProductID AS 'ID do Produto',
+       Quantity AS 'Quantidade'
+FROM OrderDetails
+ORDER BY ProductID DESC, Quantity ASC
+LIMIT 10;
+=====================================================================================
+ -- PART2:
+-- EX1:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails;
+
+-- EX2:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID > 10
+ORDER BY Quantity;
+
+-- EX3:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID = 5
+ORDER BY Quantity;
+
+-- EX4:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID < 50
+ORDER BY Quantity;
+
+-- EX5:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID > 100
+ORDER BY Quantity;
+
+-- EX6:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID % 2 = 0
+ORDER BY Quantity;
+
+-- EX7:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID % 2 <> 0
+ORDER BY Quantity;
+
+-- EX8:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID BETWEEN 5 AND 15
+ORDER BY Quantity;
+
+-- EX9:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID LIKE '%0'
+ORDER BY Quantity;
+
+-- EX10:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID BETWEEN 10 AND 30
+ORDER BY Quantity;
+
+-- EX11:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity > 25
+ORDER BY Quantity;
+
+-- EX12:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity < 10
+ORDER BY Quantity;
+
+-- EX13:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID > 7
+ORDER BY Quantity;
+
+-- EX14:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID < 20
+ORDER BY Quantity;
+
+-- EX15:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity % 5 = 0 
+ORDER BY Quantity;
+
+-- EX16:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID < 12
+ORDER BY Quantity;
+
+-- EX17:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID BETWEEN 15 AND 30
+ORDER BY Quantity;
+
+-- EX18:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID LIKE '%2'
+ORDER BY Quantity;
+
+-- EX19:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID > 10
+ORDER BY Quantity;
+
+-- EX20:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID % 2 <> 0
+ORDER BY Quantity;
+
+-- EX21:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID % 3 = 0
+ORDER BY Quantity;
+
+-- EX22:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID > 30
+ORDER BY Quantity;
+
+-- EX23:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity BETWEEN 10 AND 20
+ORDER BY Quantity;
+
+-- EX24:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID LIKE '%5'
+ORDER BY Quantity;
+
+-- EX25:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID IN (3,5,7)
+ORDER BY Quantity;
+
+-- EX26:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity NOT BETWEEN 15 AND 25
+ORDER BY Quantity;
+
+-- EX27:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID  BETWEEN 5 AND 15
+ORDER BY Quantity;
+
+-- EX28:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID  = 100
+ORDER BY Quantity;
+
+-- EX29:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID  BETWEEN 100 AND 200
+ORDER BY Quantity;
+
+-- EX30:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity  > 20
+ORDER BY Quantity;
+
+-- EX31:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID  NOT IN(1,2,3)
+ORDER BY Quantity;
+
+-- EX32:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID  LIKE '%2'
+ORDER BY Quantity;
+
+-- EX33:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity  % 2 = 0
+ORDER BY Quantity;
+
+-- EX34:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID > 200
+ORDER BY Quantity;
+
+-- EX35:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID = 10
+ORDER BY Quantity;
+
+-- EX36:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID BETWEEN 50 AND 100
+ORDER BY Quantity;
+
+-- EX37:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID LIKE '1%'
+ORDER BY Quantity;
+
+-- EX38:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID % 5 = 0
+ORDER BY Quantity;
+
+-- EX39:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity NOT IN(5,10,15)
+ORDER BY Quantity;
+
+-- EX40:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID < 10
+ORDER BY Quantity;
+
+-- EX41:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID > 20
+ORDER BY Quantity;
+
+-- EX41:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID > 20
+ORDER BY Quantity;
+
+-- EX42:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity = 15
+ORDER BY Quantity;
+
+-- EX43:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderDetailID IN(10,20,30)
+ORDER BY Quantity;
+
+-- EX44:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity BETWEEN 5 and 10
+ORDER BY Quantity;
+
+-- EX45:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID NOT LIKE '%3'
+ORDER BY Quantity;
+
+-- EX46:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID > 30
+ORDER BY Quantity;
+
+-- EX47:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE OrderID < 100
+ORDER BY Quantity;
+
+-- EX48:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE ProductID BETWEEN 10 AND 50
+ORDER BY Quantity;
+
+-- EX49:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity % 4 = 0
+ORDER BY Quantity;
+
+-- EX49:
+SELECT FORMAT( AVG (Quantity),2)AS 'Media de Quantidade'
+FROM orderdetails
+WHERE Quantity % 4 = 0
+ORDER BY Quantity;

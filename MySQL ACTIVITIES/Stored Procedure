@@ -1,0 +1,116 @@
+-- Suppliers
+
+DELIMITER //
+CREATE PROCEDURE sp_CadastroSupplier()
+BEGIN 
+	SELECT s.SupplierName AS 'Nome do Provedor',
+    s.city AS Cidade,
+    s.Country AS País,
+    s.Phone AS TELEFONE,
+    p.ProductName AS 'Nome do Produto'
+    FROM Suppliers s
+    JOIN Products p 
+    WHERE p.supplierid = s.supplierid
+    ORDER BY suppliername ASC;
+    END // 
+    DELIMITER ;
+    
+    CALL sp_cadastrosupplier;    
+    
+    -- Employees 
+    DELIMITER // 
+    CREATE PROCEDURE sp_PedidosPorFuncionario()
+    BEGIN 
+   SELECT  e.employeeid AS 'Id do Funcionario',
+   CONCAT (e.Firstname ,' ',e.Lastname) AS 'Nome do Funcionario',
+   COUNT(o.orderid) AS 'Quantidade de pedidos '
+   FROM Employees e 
+   JOIN orders o ON o.employeeid = e.employeeid
+   GROUP BY e.EmployeeID;
+   
+   END // 
+   DELIMITER ; 
+
+   CALL sp_PedidosPorFuncionario;
+   
+   -- Customers 
+   DELIMITER //
+   CREATE PROCEDURE sp_ClientePedido()
+BEGIN 
+	SELECT c.customerid AS 'ID do Cliente',
+    c.customername AS 'Nome do Cliente',
+    c.Address AS 'Endereço',
+    c.City AS 'Cidade',
+    c.PostalCode AS 'Codigo postal',
+    c.Country AS 'País',
+    o.OrderID AS 'ID do pedido',
+    o.OrderDate As 'Data do Pedido'
+    FROM customers c
+    JOIN orders o ON o.customerid = c.customerid
+    ORDER BY c.customerid asc;
+    END // 
+    DELIMITER ;
+    
+    CALL sp_Clientepedido
+
+-- Products
+DELIMITER //
+CREATE PROCEDURE sp_ProdutosAcimaDaMedia()
+BEGIN 
+    SELECT od.OrderDetailID AS 'ID Detalhado do Pedido',
+    od.ProductID AS 'ID do Produto',
+    p.ProductName AS 'Nome do Produto',
+    p.Price AS 'Precos dos produtos acima da media',
+    p.Unit AS 'unidade',
+    c.categoryname AS 'Nome da Categoria'
+    FROM OrderDetails od 
+    JOIN Products p ON p.productid = od.productid
+    JOIN Categories c ON p.categoryid = c.categoryid
+    WHERE p.Price > (
+    SELECT AVG(p.Price)
+    FROM Products p)
+    ORDER BY p.price;
+    END // 
+    DELIMITER ;
+   
+   CALL sp_ProdutosAcimaDaMedia;
+   
+-- Shippers
+DELIMITER //
+CREATE PROCEDURE sp_TransportadorDoPedido()
+BEGIN
+SELECT s.shipperID AS 'ID da transportadora',
+s.shipperName AS 'Nome da transportadora',
+o.orderID AS 'ID do pedido',
+o.OrderDate AS 'Data do pedido',
+c.CustomerName AS 'Nome do Cliente'
+FROM shippers s
+JOIN orders o ON s.shipperid = o.shipperid
+JOIN customers c ON c.customerID = o.customerID
+WHERE MONTH(OrderDate) = 07;
+END //
+DELIMITER ;
+
+CALL sp_TransportadorDoPedido;
+ 
+-- Orders
+DELIMITER //
+CREATE PROCEDURE sp_InformacoesDoPedido()
+BEGIN
+SELECT o.orderID AS 'ID do Pedido',
+c.customername AS 'Nome do Comprador',
+s.Shippername AS 'Nome da Transportadora',
+od.quantity AS 'Quantidade de Produtos',
+o.OrderDate AS 'Data do Pedido',
+c.Address AS 'Endereco',
+c.city AS Cidade
+FROM Orders o 
+JOIN customers c ON c.customerid = o.customerid
+JOIN shippers s ON s.shipperid = o.shipperid
+JOIN OrderDetails od ON o.orderid = od.orderid
+WHERE MONTH(o.OrderDate) = 08
+ORDER BY o.Orderid ASC;
+END //
+DELIMITER ; 
+
+CALL sp_InformacoesDoPedido;

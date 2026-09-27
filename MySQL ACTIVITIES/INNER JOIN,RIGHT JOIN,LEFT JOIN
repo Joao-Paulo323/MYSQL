@@ -1,0 +1,183 @@
+-- EX1:
+SELECT p.productName AS 'NOME DO PRODUTO', 
+s.SupplierName AS 'Nome do PROVEDOR', 
+s.Country AS 'PAIS DO PROVEDOR',
+p.SupplierID AS 'ID Do Provedor'
+FROM products AS p
+INNER JOIN Suppliers AS s ON 
+p.supplierid = s.supplierid
+WHERE categoryid = 2
+ORDER BY 'ID do Provedor';
+
+-- EX2:
+SELECT o.orderID AS 'ID do Pedido', o.orderDate AS 'Data do Pedido',s.shipperName AS 'Nome da Transportadora'
+FROM orders AS o
+INNER JOIN Shippers AS s ON
+o.shipperID = s.shipperID;
+
+-- EX3:
+SELECT p.productName AS 'Nome do Produto', s.city AS 'Cidade Do fornecedor',p.price AS 'Preco do Produto',s.supplierID AS 'Id do Provedor'
+FROM Products AS p
+INNER JOIN suppliers AS s ON
+p.supplierID = s.supplierID
+WHERE price > 50;
+
+-- EX4:
+SELECT o.orderid AS 'ID do pedido',s.shippername AS 'Nome da Transportadora',s.shipperID AS 'ID da transportadora'
+FROM Orders AS o
+INNER JOIN Shippers AS s ON
+s.shipperID = o.shipperid
+WHERE shipperName = 'Speedy Express';
+
+-- EX5:
+SELECT p.ProductName AS 'Nome do Produto',
+s.supplierName AS 'Nome do Fornecedor',
+s.country AS 'Pais do fornecedor',
+s.supplierID AS 'Id do Fornecedor'
+FROM products AS p
+INNER JOIN Suppliers AS s 
+ON p.supplierID = s.supplierID
+WHERE country = 'USA' OR 'BRAZIL';
+
+-- EX6:
+SELECT o.orderid AS 'ID do Pedido',
+s.phone 'Telefone da transportadora',
+s.shipperid AS 'ID da transportadora'
+FROM orders AS o
+INNER JOIN shippers AS s
+ON s.shipperid = o.shipperid
+WHERE YEAR(OrderDate) = 2023;
+
+-- EX7:
+SELECT s.supplierName AS 'Nome do Fornecedor',
+p.productName AS 'Nome do produto',
+s.supplierid AS 'ID do provedor ',
+p.price AS 'Preco do produto' 
+FROM suppliers AS s
+INNER JOIN products AS p
+ON s.supplierid = p.supplierid;
+
+-- EX8:
+SELECT o.orderid AS 'ID do pedido',
+s.shippername AS 'Nome da transportadora',
+s.shipperid AS 'ID da transportadora'
+FROM orders AS o
+INNER JOIN Shippers AS s ON
+o.shipperID = s.ShipperID
+ORDER BY 'Nome da transpotadora' ASC;
+
+PART 2:
+
+-- EX9:
+SELECT s.supplierName AS 'Nome do Fornecedor'
+,p.productname AS 'Nome do Produto',
+s.supplierid AS 'ID do Fornecedor'
+FROM suppliers AS s
+LEFT JOIN Products AS p 
+ON s.supplierid = p.supplierid;
+
+-- EX10:
+SELECT s.shipperName AS 'Nome da Transportadora',
+s.ShipperID AS 'ID da Transpotadora',
+COUNT(o.orderid) AS 'Quantidade de Pedidos'
+FROM Shippers AS s
+LEFT JOIN Orders AS o 
+ON s.shipperid = o.shipperid
+GROUP BY s.ShipperID,s.shippername;
+
+-- EX11:
+SELECT p.productName AS 'Nome do Produto',
+s.supplierName AS 'Nome do Fornecedor'
+FROM products AS p
+RIGHT JOIN suppliers AS s 
+ON s.supplierid = p.supplierid;
+
+-- EX12:
+SELECT p.productName AS 'Nome do Produto',
+s.country AS 'Pais',
+s.supplierID AS 'Nome do Fornecedor'
+FROM products AS p
+RIGHT JOIN suppliers AS s 
+ON s.supplierid = p.supplierid
+WHERE Country = 'Germany';
+
+-- EX13:
+SELECT s.shipperID AS 'Nome da transportadora',
+o.orderID AS 'ID do pedido'
+FROM orders AS o
+RIGHT JOIN shippers AS s
+ON s.shipperID = o.shipperID;
+ 
+ -- EX14:
+ SELECT p.productname AS 'Nome do Produto',
+ su.suppliername AS 'Nome do Fornecedor',
+ s.shippername AS 'Nome da transportadora',
+ o.orderid AS 'Id do pedido'
+ FROM Products AS p
+ INNER JOIN suppliers AS su ON su.supplierid = p.supplierid
+ INNER JOIN orderdetails as od ON p.productid = od.productid
+ INNER JOIN orders AS o ON od.orderid = o.orderid
+ INNER JOIN shippers AS s ON o.shipperid = s.shipperid
+ WHERE o.orderid = 10248;
+ 
+ -- EX15:
+ SELECT su.suppliername AS 'Nome do Fornecedor',
+ su.city AS 'Cidade',
+ o.orderdate AS 'Data do Pedido',
+ s.shippername AS 'Nome da transportadora',
+ p.productname AS 'Nome do Produto'
+ FROM suppliers AS su
+ INNER JOIN products AS p ON p.supplierid = su.supplierid
+ INNER JOIN orderdetails AS od ON p.productid = od.productid
+ INNER JOIN orders AS o ON od.orderid = o.orderid
+  INNER JOIN shippers AS s
+WHERE s.shippername = 'United Package';
+
+ -- EX16:
+  SELECT s.suppliername AS 'Nome do Fornecedor',
+  P.productname AS 'Nome do Produto',
+  od.orderid AS 'ID do Pedido'
+FROM suppliers AS s
+JOIN products p ON p.supplierid = s.supplierid
+LEFT JOIN Orderdetails od ON od.productid = p.productid
+WHERE od.orderid IS NULL;
+
+-- EX17:
+  SELECT s.contactname AS 'Nome de contato',
+  p.productname AS 'Nome do Produto',
+  c.categoryid AS 'ID da categoria',
+  s.country AS 'Pais'
+FROM suppliers s
+JOIN products p ON p.supplierid = s.supplierid
+JOIN categories AS c ON c.categoryID = p.categoryid
+WHERE c.categoryid IN (1,3,5) AND s.Country = 'UK';
+
+-- EX18:
+ SELECT su.supplierid AS 'ID do fornecedor',
+ su.suppliername AS 'Nome do Fornecedor',
+ COUNT(od.orderid) AS 'Total de Pedidos'
+FROM products AS p 
+JOIN suppliers su ON su.supplierid = p.supplierid
+JOIN orderdetails od ON p.productid = od.productid
+GROUP BY su.supplierid, su.suppliername;
+
+-- EX19:
+  SELECT su.suppliername AS 'Nome do Fornecedor',
+  c.categoryname AS 'Nome da Categoria',
+  p.productname AS 'Nome do Produto'
+FROM Products p
+JOIN suppliers su ON su.supplierid = p.supplierid
+JOIN categories c ON c.categoryid = p.categoryid
+WHERE p.price > (SELECT AVG(price)
+  FROM products  );
+
+-- EX20:
+ SELECT su.suppliername AS 'Nome do Fornecedor',
+ o.orderid AS 'ID do Pedido',
+ p.productname AS 'Nome do Produto',
+ s.shippername AS 'Nome da transportadora'
+FROM Products p 
+JOIN Suppliers su ON su.supplierid = p.supplierid
+JOIN orderdetails od ON p.productid = od.productid
+JOIN Orders o ON o.orderid = od.orderid
+JOIN shippers s ON o.shipperid = s.shipperid;

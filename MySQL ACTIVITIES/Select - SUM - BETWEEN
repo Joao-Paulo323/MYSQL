@@ -1,0 +1,274 @@
+-- EX1:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails;
+
+-- EX2:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID > 10;
+
+-- EX3:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID < 100;
+
+-- EX4:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderDetailID % 2 = 0;
+
+-- EX5:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID = 200;
+
+-- EX6:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID BETWEEN 5 AND 15;
+
+-- EX7:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE Quantity > 20;
+
+-- EX8:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID % 2 <> 0;
+
+-- EX9:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID % 5 = 0;
+
+-- EX10:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderDetailID BETWEEN 50 AND 100;
+
+-- EX11:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE Quantity > 15;
+
+-- EX12:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID IN (3,6,9);
+
+-- EX13:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID LIKE '%0';
+
+-- EX14:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID > 20;
+
+-- EX15:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderDetailID < 30;
+
+-- EX16:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE Quantity BETWEEN 10 AND 30;
+
+-- EX17:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID % 4 = 0;
+
+-- EX18:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID NOT IN (1,2,3);
+
+-- EX19:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderDetailID > 200;
+
+-- EX20:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID LIKE '1%';
+
+-- EX21:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID % 7 = 0;
+
+-- EX22:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderDetailID LIKE '%5';
+
+-- EX23:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE Quantity < 12;
+
+-- EX24:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE OrderID = 300;
+
+-- EX25:
+SELECT SUM(Quantity) AS 'TOTAL'
+FROM OrderDetails
+WHERE ProductID BETWEEN 15 AND 25;
+
+Parte 2 
+
+Ex26:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE MOD(OrderDetailID, 2) = 1;
+
+Ex27:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID > 50;
+
+Ex28:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE Quantity BETWEEN 5 AND 20;
+
+Ex29:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID < 10;
+
+Ex30:
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderID > 100;
+
+Ex31:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID IN (2, 4, 8);
+
+Ex32:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID LIKE '3%';
+
+Ex33:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE MOD(Quantity, 10) = 0;
+
+Ex34:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderID > 250;
+
+Ex35:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID LIKE '%6';
+
+Ex36:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderID < 50;
+
+Ex37:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID > 30;
+
+Ex38:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID > 400;
+
+Ex39:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderID BETWEEN 20 AND 60;
+
+Ex40:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE Quantity > 18;
+
+Ex41:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE MOD(ProductID, 9) = 0;
+
+Ex42:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID < 150;
+
+Ex43:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE Quantity BETWEEN 25 AND 40;
+
+Ex44:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID = 7;
+
+Ex45:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderID > 400;
+
+Ex46:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID LIKE '%9';
+
+Ex47:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE MOD(OrderID, 5) = 0;
+
+Ex48:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE Quantity BETWEEN 20 AND 50;
+
+Ex49:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE ProductID < 12;
+
+Ex50:
+
+SELECT SUM(Quantity) AS Total
+FROM OrderDetails
+WHERE OrderDetailID BETWEEN 100 AND 300;

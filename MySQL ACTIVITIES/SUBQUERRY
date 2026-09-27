@@ -1,0 +1,328 @@
+-- EX1:
+SELECT productName AS 'Nome do Produto',
+price AS 'preço'
+FROM products 
+WHERE price > (SELECT AVG(price) FROM products)
+ORDER BY price DESC
+LIMIT 15;
+
+-- EX2:
+SELECT CONCAT(lastName,',',firstName) AS 'Nome do Funcionário',
+birthDate AS 'Data de Nascimento'
+FROM employees
+WHERE birthDate < (SELECT MAX(birthDate) FROM employees)
+ORDER BY birthdate 
+LIMIT 5;
+
+-- EX3:
+SELECT productName AS 'Nome do Produto',
+price AS 'Preço',
+(SELECT ROUND(AVG(p2.price), 2)
+FROM products AS p2 
+WHERE p2.categoryID = p.categoryID) AS 'Média da Categoria'
+FROM products AS p
+LIMIT 10;
+
+-- EX4:
+
+SELECT Concat(customerName, ' - ', country) AS 'Cliente e País'
+FROM customers 
+WHERE country  = (SELECT country 
+                 FROM suppliers 
+                 WHERE supplierID = 1);
+                 
+-- EX5:
+
+SELECT productName AS 'Nome do Produto',
+price AS 'Preço',
+ROUND (price * 10, 2) AS 'Stock Hipotético'
+FROM products
+WHERE (price*10) < (SELECT MAX(price) FROM products)
+LIMIT 12;
+
+
+-- EX6:
+SELECT CONCAT(customerName, ' - Última compra em: ',
+(SELECT MAX(orderDate)
+FROM orders
+WHERE orders.customerID = customers.customerID)) AS 'Cliente e Última Compra'
+FROM customers
+LIMIT 8;
+
+-- EX7:
+SELECT orderDetailID AS 'ID do Detalhe', 
+quantity AS 'Quantidade'
+FROM orderdetails
+WHERE quantity = (SELECT MAX(quantity) FROM orderdetails)
+LIMIT 5;
+
+-- EX8:
+SELECT CONCAT(shippername, ' - ', phone) AS 'Transportadora e telefone'
+FROM shippers 
+WHERE shipperID IN (SELECT DISTINCT shipperID
+FROM orders 
+WHERE customerID = 4)
+LIMIT 3;
+
+-- EX9:
+SELECT productname AS 'Nome do Produto',
+ROUND(discountedPrice, 2) AS 'Preço com 20% de desconto'
+FROM (SELECT productName,
+price * 0.8 AS discountedPrice
+FROM products) AS discounted
+WHERE discountedPrice > 50
+LIMIT 10;
+
+-- EX10:
+SELECT CONCAT(productName, ' - ', unit) AS 'Produto e Unidade'
+FROM products
+WHERE supplierID IN (SELECT supplierID
+FROM suppliers
+WHERE city = 'London');
+
+-- EX11:
+SELECT employeeID AS 'ID do funcionário',
+COUNT(orderID) AS 'Total de encomendas'
+FROM orders
+WHERE orderID IN (SELECT od.orderID
+FROM orderdetails AS od
+INNER JOIN products AS p ON od.productID = p.productID
+WHERE p.productname = 'Chais')
+GROUP BY employeeID
+ORDER BY COUNT(orderID) DESC;
+
+-- EX12:
+SELECT city AS 'Cidade',
+COUNT(customerID) AS 'Total de clientes'
+FROM customers
+WHERE city IN (SELECT DISTINCT city
+FROM suppliers)
+GROUP BY city 
+ORDER BY COUNT(customerID) DESC
+LIMIT 5;
+
+-- EX13:
+SELECT productID AS 'ID do produto',
+COUNT(orderID) AS 'Vezes vendido'
+FROM orderdetails
+WHERE productID IN (SELECT productID
+FROM products 
+WHERE categoryID = 	(SELECT categoryID 
+FROM categories
+WHERE categoryName = 'Beverages'))
+GROUP BY productID 
+ORDER BY COUNT(orderID) DESC;
+
+-- EX14:
+
+SELECT COUNT(*) AS 'TotalEncomendas'
+FROM (SELECT orderid,
+SUM(quantity)AS 'QuantidadeTotal'
+FROM orderdetails
+GROUP BY orderid) AS ResumoEncomendas
+WHERE QuantidadeTotal > 50;
+
+-- EX15:
+SELECT c.categoryName AS 'Categoria',
+       COUNT(p.productID) AS 'Produtos Acima da Média'
+FROM products AS p
+INNER JOIN categories AS c ON p.categoryID = c.categoryID
+WHERE p.price > (SELECT AVG(p2.price)
+                 FROM products AS p2
+                 WHERE p2.categoryID = p.categoryID)
+GROUP BY c.categoryName
+ORDER BY COUNT(p.productID) DESC;
+
+-- EX16:
+SELECT shipperID AS 'ID da transportadora',
+COUNT(orderID) AS 'Total de encomendas'
+FROM orders AS o
+WHERE EXISTS (SELECT 1 
+FROM orders AS o2
+WHERE o2.shipperID = o.shipperID 
+AND YEAR(o2.orderDate) = 1996)
+GROUP BY shipperID 
+ORDER BY COUNT(orderID) DESC;
+
+-- EX17:
+SELECT supplierID AS 'ID do fornecedor',
+COUNT(productID) AS 'Total de Produtos'
+FROM products 
+WHERE supplierID IN (SELECT supplierID
+FROM suppliers
+WHERE country IN (SELECT DISTINCT country
+FROM customers))
+GROUP BY supplierID 
+ORDER BY COUNT(productID) DESC
+LIMIT 10;
+
+-- EX18:
+SELECT country AS 'País',
+COUNT(customerID) AS 'Total de clientes',
+(SELECT COUNT(o.orderID)
+FROM orders AS o
+INNER JOIN customers AS c2 ON o.customerID = c2.customerID 
+WHERE c2.country = c.country) AS 'Total de Encomendas'
+FROM customers AS c 
+GROUP BY country 
+ORDER BY COUNT(customerID) DESC;
+
+-- EX19
+SELECT productID AS 'ID do produto',
+SUM(Quantity) AS 'Quantidade Total Vendida'
+FROM orderdetails
+WHERE productID IN (SELECT productID 
+FROM products 
+WHERE price > 20)
+GROUP BY productID
+ORDER BY SUM(quantity) DESC
+LIMIT 5;
+
+-- EX20:
+SELECT city AS 'Cidade',
+COUNT(customerID) AS 'Clientes VIP'
+FROM customers
+WHERE customerID IN (SELECT customerID
+FROM orders
+GROUP BY customerID 
+HAVING COUNT(orderID) > 3)
+GROUP BY city 
+ORDER BY COUNT(customerID) DESC;
+
+-- EX:21:
+SELECT Employeeid AS 'ID do Funcionario', COUNT(OrderiD) AS 'Total de Encomendas'
+FROM orders 
+GROUP BY employeeid
+HAVING COUNT(Orderid) > (
+SELECT AVG ('total de pedidos')
+    FROM (
+        SELECT COUNT(OrderID) AS TotalPedidos
+        FROM Orders
+        GROUP BY EmployeeID
+    ) AS SUB
+);
+
+/*22. (GROUP BY, HAVING com Subquery, CONCAT): Agrupe os produtos por
+CategoryID e concatene os nomes das categorias. Use HAVING para
+mostrar apenas categorias onde o preço médio dos produtos é maior que o
+preço médio do sistema inteiro.).*/
+SELECT CategoryID,
+       GROUP_CONCAT(ProductName) AS Produtos
+FROM Products
+GROUP BY CategoryID
+HAVING AVG(Price) > (
+    SELECT AVG(Price)
+    FROM Products
+);
+
+/*23. (GROUP BY, HAVING com Subquery, COUNT): Conte os clientes por país.
+Exiba apenas os países (HAVING) onde a quantidade de clientes é igual ao
+número de clientes que vivem no 'USA' (obtenha este número via
+subquery).*/
+SELECT Country,
+       COUNT(*) AS TotalClientes
+FROM Customers
+GROUP BY Country
+HAVING COUNT(*) = (
+    SELECT COUNT(*)
+    FROM Customers
+    WHERE Country = 'USA'
+);
+
+/*24. (GROUP BY, HAVING com Subquery, Cálculos): Agrupe OrderDetails por
+OrderID e calcule a quantidade total. Mostre apenas as encomendas cuja
+quantidade total é superior à quantidade máxima faturada numa única
+linha de OrderDetails de todo o histórico.*/
+SELECT OrderID,
+       SUM(Quantity) AS TotalQuantidade
+FROM OrderDetails
+GROUP BY OrderID
+HAVING SUM(Quantity) > (
+    SELECT MAX(QuantidadeLinha)
+    FROM (
+        SELECT Quantity AS QuantidadeLinha
+        FROM OrderDetails
+    ) t
+);
+
+/*25. (GROUP BY, HAVING com Subquery com ALL): Agrupe os produtos por
+fornecedor e conte-os. Use HAVING para mostrar apenas os fornecedores
+cuja contagem de produtos seja superior à contagem de produtos de
+TODOS os fornecedores do país 'UK' (subquery com ALL).*/
+SELECT SupplierID,
+       COUNT(*) AS TotalProdutos
+FROM Products
+GROUP BY SupplierID
+HAVING COUNT(*) > ALL (
+    SELECT COUNT(*)
+    FROM Products p
+    JOIN Suppliers s ON p.SupplierID = s.SupplierID
+    WHERE s.Country = 'UK'
+    GROUP BY p.SupplierID
+);
+
+/* 26. (GROUP BY, HAVING com Subquery, COUNT, LIMIT): Agrupe as
+encomendas pelo CustomerID e conte-as. Mostre apenas os clientes que
+encomendaram mais vezes do que o cliente com ID 1. Limite a 5
+resultados. */
+SELECT CustomerID, COUNT(*) AS TOTALENCOMENDAS
+FROM orders 
+GROUP BY CustomerID
+HAVING COUNT(*) > (
+    SELECT COUNT(*)
+    FROM Orders 
+    WHERE customerID =1 
+)
+limit 5;
+
+/*27. (GROUP BY, HAVING com Subquery, Cálculos): Agrupe os produtos pela
+sua categoria e calcule o preço máximo em cada uma. Mostre apenas as
+categorias cujo preço máximo seja inferior a 100 euros (validação via
+subquery no HAVING, em vez de WHERE). */
+SELECT CategoryID as categoria, MAX(price) as PrecoMaximo 
+FROM Products
+GROUP BY CategoryID
+HAVING MAX(price) <(
+    SELECT MAX(price)
+    FROM Products 
+    WHERE Price < 100 
+);
+
+/*28. (GROUP BY, COUNT, HAVING com EXISTS): Conte as encomendas por
+EmployeeID. Mostre o resultado apenas se existir (via subquery EXISTS no
+HAVING) alguma encomenda no sistema registada na data '1996-07-04'.*/
+SELECT EmployeeID as IDdasEncomendas, COUNT(*) AS TotalEncomendas
+FROM Orders
+GROUP BY EmployeeID
+HAVING EXISTS (
+    SELECT 1
+    FROM Orders 
+    WHERE OrderDate = '1996-07-04'
+);
+
+/*29. (GROUP BY, HAVING com Subquery, Cálculos): Calcule a soma da
+quantidade em OrderDetails agrupada por ProductID. Exiba apenas os
+produtos cuja soma de vendas seja superior à soma de vendas do produto
+'Tofu' (obtenha o ID e a soma via subquery).*/
+SELECT ProductID AS IdDoProduto,
+ SUM(Quantity) AS Quantidade
+FROM OrderDetails
+GROUP BY ProductID
+HAVING ProductID = (
+    SELECT ProductID
+    FROM Products
+    WHERE ProductName = 'tofu'
+);
+
+/*30. (GROUP BY, HAVING com Subquery escalar cruzada): Conte os
+fornecedores por cidade. Mostre apenas as cidades cuja contagem seja
+exatamente igual ao número total de transportadoras (Shippers) registadas
+no banco (subquery simples no HAVING).*/
+SELECT City AS Cidade,
+	   COUNT(*) AS TOTALFORNECEDORES 
+FROM Suppliers
+GROUP BY CITY
+HAVING COUNT(*) =(
+    SELECT COUNT(*)
+    FROM Shippers);
+
